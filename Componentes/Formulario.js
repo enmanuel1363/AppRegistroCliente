@@ -1,23 +1,18 @@
 import { Text, View, StyleSheet, TextInput, Button, Alert, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+
 
 import { Picker } from '@react-native-picker/picker';
-import { ScrollView } from 'react-native-gesture-handler';
 
 
 
-function Formulario() {
-
-  const navigation = useNavigation();
-
+function Formulario({ route, navigation }) {
+  const { guardarNuevo } = route.params;
   const [cedula, setCedula] = useState('');
   const [nombres, setNombres] = useState('');
   const [apellidos, setApellidos] = useState('');
   const [fechaNacimiento, SetFechaNacimiento] = useState('');
   const [sexo, setSexo] = useState('');
-
-  const [clientes, setCliente] = useState([]);
 
   const guardar = () => {
     if (!cedula || !nombres) return null;
@@ -29,7 +24,8 @@ function Formulario() {
       Nsexo: sexo,
     }
 
-    setCliente([nuevoCliente, ...clientes])
+
+    guardarNuevo(nuevoCliente);
     Alert.alert('Datos almacenados', `
     Cédula: ${cedula}
     Nombres: ${nombres}
@@ -44,12 +40,15 @@ function Formulario() {
     setApellidos('');
     SetFechaNacimiento('');
     setSexo('');
+    navigation.goBack();
+
+
   }
 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}> Registro de datos del cliente  </Text>
+      <Text style={styles.titulo}> Registro de cleintes  </Text>
 
       <View style={styles.containerInput}>
 
@@ -58,7 +57,7 @@ function Formulario() {
           style={styles.input}
           value={cedula}
           onChangeText={setCedula}
-          placeholder='Ej: 365-440955-0002h'
+          placeholder='Ingrese su cedula'
         />
 
         <Text style={styles.label}>Nombres: </Text>
@@ -66,7 +65,7 @@ function Formulario() {
           style={styles.input}
           value={nombres}
           onChangeText={setNombres}
-          placeholder='Ej: Juan carlos '>
+          placeholder='Ingrese su nombre'>
         </TextInput>
 
         <Text style={styles.label}>Apellidos</Text>
@@ -74,7 +73,7 @@ function Formulario() {
           style={styles.input}
           value={apellidos}
           onChangeText={setApellidos}
-          placeholder='Apellidos'
+          placeholder='Ingrese su apellido'
         ></TextInput>
 
         <Text style={styles.label}>Fecha de nacimiento</Text>
@@ -97,20 +96,16 @@ function Formulario() {
             <Picker.Item label="Femenino" value="Femenino" />
           </Picker>
         </View>
-        
+
       </View>
-      
+
       <View style={styles.botonGuardar}>
-        <TouchableOpacity style={styles.boton} onPress={guardar}>
-          <Text style={styles.texto}>Guardar</Text>
+        <TouchableOpacity style={styles.boton}
+          onPress={guardar}>
+          <Text style={styles.texto}  >Guardar</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={styles.botonContainer}>
-        <TouchableOpacity style={styles.boton}  onPress={() => navigation.navigate('Lista', { clientes })}>
-          <Text style={styles.texto}>Lista</Text>
-        </TouchableOpacity>
-      </View>
     </View>
 
 
