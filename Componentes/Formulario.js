@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TextInput, Button, Alert, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Alert, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 
 
@@ -8,6 +8,7 @@ import { Picker } from '@react-native-picker/picker';
 
 function Formulario({ route, navigation }) {
   const { guardarNuevo } = route.params;
+
   const [cedula, setCedula] = useState('');
   const [nombres, setNombres] = useState('');
   const [apellidos, setApellidos] = useState('');
@@ -15,7 +16,10 @@ function Formulario({ route, navigation }) {
   const [sexo, setSexo] = useState('');
 
   const guardar = () => {
-    if (!cedula || !nombres) return null;
+    if (!cedula || !nombres || !apellidos || !fechaNacimiento )
+
+      return null;  
+
     const nuevoCliente = {
       Ncedula: cedula,
       Nnombres: nombres,
@@ -42,7 +46,7 @@ function Formulario({ route, navigation }) {
     setSexo('');
     navigation.goBack();
 
-
+     
   }
 
 
@@ -120,7 +124,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    backgroundColor: '#E6F7E6'
+    backgroundColor: 'white'
 
   },
   containerInput: {
@@ -134,7 +138,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#358B47',
+    borderColor: 'black',
     padding: 8,
     marginTop: 5,
     borderRadius: 5,
@@ -154,14 +158,14 @@ const styles = StyleSheet.create({
     fontSize: 25,
     paddingBottom: 10,
     fontWeight: 'bold',
-    color: '#4F8B2E',
+    color: 'black',
     alignContent: 'center'
   },
   botonGuardar: {
     margin: 10,
   },
   boton: {
-    backgroundColor: '#358B47',
+    backgroundColor: 'blue',
     height: 50,
     width: 300,
     borderRadius: 10,

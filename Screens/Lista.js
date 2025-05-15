@@ -66,7 +66,7 @@ export default function Lista() {
         <View style={styles.container}>
             <TouchableOpacity style={styles.boton} onPress={() => navigation.navigate('Formulario', {guardarNuevo})} >
 
-                <FontAwesome5 name="user-plus" size={24} color="#4F8B2E" />
+                <FontAwesome5 name="user-plus" size={24} color="blue" />
             </TouchableOpacity>
             <Text style={styles.titulo}> Lista de clientes </Text>
 
@@ -84,7 +84,7 @@ export default function Lista() {
 
                                 <TouchableOpacity style={styles.botone} onPress={eliminar} >
 
-                                    <FontAwesome5 name="trash" size={24} color="red" />
+                                    <FontAwesome5 name="trash" size={24} color="blue" />
                                 </TouchableOpacity>
 
 
@@ -111,24 +111,27 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#E6F7E6',
+        backgroundColor: 'white',
     },
     titulo: {
         fontSize: 25,
         paddingBottom: 10,
         fontWeight: 'bold',
-        color: '#4F8B2E',
+        color: '#black',
         paddingTop: 20
     },
     card: {
         height: 130,
         width: 360,
-        backgroundColor: '#C2E8C2',
+        backgroundColor: 'white',
         alignItems: 'left',
         justifyContent: 'center',
         borderRadius: 5,
         marginBottom: 10,
-        position: 'relative'
+        position: 'relative',
+        borderColor: 'black',
+        borderWidth: 2,
+        borderRadius:30
     },
     label: {
         color: '#00000',
@@ -137,15 +140,15 @@ const styles = StyleSheet.create({
 
     },
     valor: {
-        color: '#358B47'
+        color: 'black'
 
     },
     boton: {
         height: 50,
-        backgroundColor: '#E6F7E6',
+        backgroundColor: 'white',
         width: 50,
         borderRadius: 10,
-        borderColor: '#4F8B2E',
+        borderColor: 'black',
         borderWidth: 1,
         marginLeft: 300,
         justifyContent: 'center',
